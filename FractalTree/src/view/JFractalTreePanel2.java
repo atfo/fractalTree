@@ -40,13 +40,14 @@ public class JFractalTreePanel2 extends JPanel {
 	}
 	
 	protected void resetGraphics(Graphics2D g2d) {
+		g2d.setColor(new Color(rng.nextInt(255), rng.nextInt(255), rng.nextInt(255)));
 		g2d.translate(xOrigin, yOrigin - branchLength);
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		initVars();
-		Graphics2D g2d = (Graphics2D) g.create();
+		Graphics2D g2d = (Graphics2D) g;
 		resetGraphics(g2d);
 		drawTree(g2d, branchLength);
 		// drawTree(g2D);
@@ -54,13 +55,20 @@ public class JFractalTreePanel2 extends JPanel {
 	
 	
 
+	protected boolean canContinue(double length){
+		return length > 5;
+	}
+	
 	protected double drawTree(Graphics2D g2d, double length) {
-		
-		if (length > 50) {
-			int r = rng.nextInt(255), g = rng.nextInt(255), b = rng.nextInt(255);
-			g2d.setColor(new Color(r, g, b));
+		System.out.println("Called");
+		if (canContinue(length)) {
 			AffineTransform old = g2d.getTransform();
 			g2d.fillRect(-3, 0, 6, (int) length);
+			System.out.println("length: " + length);
+			int r = rng.nextInt(255), g = rng.nextInt(255), b = rng.nextInt(255);
+			System.out.println(r + ", " + g + ", " + b);
+			
+			g2d.setColor(new Color(r, g, b));
 			g2d.rotate(Math.toRadians(angle));
 			g2d.translate(0, -length*coeff);
 			drawTree(g2d, length*coeff);
@@ -68,6 +76,8 @@ public class JFractalTreePanel2 extends JPanel {
 			g2d.rotate(Math.toRadians(-angle));
 			g2d.translate(0, - length*coeff);
 			g2d.setColor(new Color(r, g, b));
+
+			System.out.println("End length: " + length);
 			drawTree(g2d, length*coeff);
 		}
 		return length;

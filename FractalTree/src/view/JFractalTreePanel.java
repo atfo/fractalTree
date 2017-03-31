@@ -59,10 +59,11 @@ public class JFractalTreePanel extends JPanel {
 		// g2d.fillRect(0, 0, getWidth(), getHeight());
 		// System.out.println(angle);
 		// System.out.println(yOrigin);
-
+		g2d.setColor(new Color(rng.nextInt(255), rng.nextInt(255), rng.nextInt(255)));
+		g2d.fillRect(-3, 0, 6, (int) length);
 		if (length > 10) {
 			AffineTransform old = g2d.getTransform();
-			g2d.fillRect(-3, 0, 6, (int) length);
+			
 			System.out.println("length: " + length);
 			int r = rng.nextInt(255), g = rng.nextInt(255), b = rng.nextInt(255);
 			System.out.println(r + ", " + g + ", " + b);
