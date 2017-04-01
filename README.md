@@ -6,4 +6,4 @@ List of functionalities:
 * gradual tree level by level : *JGradualFractalTreePanel2*
 * branch by branch as drawn in reality by the recursive algorithm : *JGradualSpiralTreePanel*
 
-I hope you'l enjoy it!
+I hope you'll enjoy it!
